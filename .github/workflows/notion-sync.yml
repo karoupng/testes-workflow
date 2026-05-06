@@ -1,0 +1,20 @@
+name: Sincroniza Teste com Notion
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  sync_notion:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout do código
+        uses: actions/checkout@v4
+
+      - name: Executa a Sincronização
+        uses: infraway/notion-commit-sync-action@v1.0
+        env:
+          NOTION_TOKEN: ${{ secrets.NOTION_TOKEN }}
+          NOTION_DATABASE_ID: ${{ secrets.NOTION_DATABASE_ID }}
